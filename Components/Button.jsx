@@ -4,14 +4,24 @@ import * as RootNavigation from "../RootNavigation"
 
 function Button(props) {
 
+    // this is done to change styles depending on the button type
+    // is there another way to do it?
     let buttonType = (props.title === "Login") ? styles.loginButton : styles.registerButton
+
     return (
         <Pressable style={buttonType} onPress={() => {
-            // change to function 
-            console.log(props.title + " button clicked")
-            RootNavigation.navigate("LoginScreen", null)
+            console.log(props.title + " button clicked" + " action " + props.action)
+
+            /*
+            wasn't able to access the naviagtion property
+            using this navigate function 
+                with params (route, data)
+                each button has an attribute named action
+                action gives the next screen route name
+            */
+            RootNavigation.navigate(props.action, null)
         }}>
-            <Text style={styles.Text}>{props.title}</Text>
+            <Text style={styles.text}>{props.title}</Text>
         </Pressable>
     );
 }
@@ -33,7 +43,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 10
     },
-    Text: {
+    text: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 18,

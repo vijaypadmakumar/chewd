@@ -10,6 +10,7 @@ import { navigationRef } from './RootNavigation';
 // Screens
 import MainScreen from './Screens/MainScreen';
 import LoginScreen from './Screens/LoginScreen';
+import HomeScreen from './Screens/HomeScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -17,9 +18,10 @@ export default function App() {
 
   return (
     <NavigationContainer ref={navigationRef} styles={styles.container}>
-      <Stack.Navigator initialRouteName="MainScreen" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="MainScreen" component={MainScreen} />
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

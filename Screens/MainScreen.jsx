@@ -7,8 +7,8 @@ function MainScreen() {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require("../assets/Images/Logo.png")} />
-            <Button title="Login" />
-            <Button title="Sign Up" />
+            <Button title="Login" action="Login" />
+            <Button title="Sign Up" action="Sign Up" />
         </View>
     );
 }
