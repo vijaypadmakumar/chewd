@@ -3,9 +3,9 @@ import { View, Text, Image, StyleSheet } from "react-native"
 
 function BottomBar(props) {
     return (
-        <div>
+        <View>
             
-        </div>
+        </View>
     );
 }
 

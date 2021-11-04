@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet, Text } from "react-native"
-import Button from '../Components/Button';
+import React from 'react';
+import { View, StyleSheet, Text, ScrollView } from "react-native"
 import Card from '../Components/Card';
 import * as RootNavigation from "../RootNavigation"
 
@@ -9,17 +8,25 @@ import * as RootNavigation from "../RootNavigation"
 // they should not be allowed to go back to the login pages
 // -> try resetting the navigation stack
 
+let a = []
+
 function HomeScreen() {
+    // RootNavigation.navigationRef.resetRoot({
+    //     title: "Home",
+    //     container: HomeScreen
+    // })
     return (
         <View style={styles.container}>
-            <Card />
+            <ScrollView style={{ margin: 100 }} horizontal={true}>
+                <Card />
+            </ScrollView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#ffffff",
+        backgroundColor: "white",
         width: "100%",
         height: "100%",
         flex: 1,

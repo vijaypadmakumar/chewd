@@ -1,14 +1,18 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native"
+import { View, Text, Image, StyleSheet, ImageBackground } from "react-native"
 
 function Card(props) {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Image style={styles.image} source={{ uri: "https://picsum.photos/seed/picsum/200/300" }} />
-                <Text style={styles.text}>Food Name</Text>
-                <Text style={styles.text}>Restaurant Name</Text>
-                <Text style={styles.text}>Location</Text>
+                {/* change the images to  */}
+                <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: "https://picsum.photos/seed/picsum/1920/1080" }}>
+                    <View style={styles.cardDescription}>
+                        <Text style={styles.cardHeading}>Restaurant name</Text>
+                        <Text style={styles.cardBody}>Food Item</Text>
+                        <Text style={styles.cardBody}>Food Item</Text>
+                    </View>
+                </ImageBackground>
             </View>
         </View>
     );
@@ -22,23 +26,44 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: 'center',
-        textAlign: "center"
+        textAlign: "center",
+
     },
     card: {
-        width: "90%",
+        width: "95%",
         height: "70%",
-        borderColor: "black",
-        borderWidth: 2
+        position: "absolute",
+        top: 120,
+    },
+    cardDescription: {
+        opacity: .8,
+        backgroundColor: "white",
+        borderRadius: 10,
+        margin: 20,
+        width: "90%"
     },
     image: {
-        width: "100%",
-        height: "70%"
+        flex: 1,
+        justifyContent: "flex-end",
+        alignItems: "center",
+        borderRadius: 10,
     },
-    text: {
-        textAlign: 'center',
-        fontWeight: 'bold',
+    cardBody: {
+        textAlign: 'left',
+        color: "black",
         fontSize: 18,
-        margin: 20
+        margin: 5,
+        marginLeft: 20,
+        fontFamily: "Times New Roman"
+    },
+    cardHeading: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: "black",
+        fontSize: 28,
+        margin: 5,
+        marginLeft: 20,
+        fontFamily: "Times New Roman"
     }
 })
 

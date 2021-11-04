@@ -11,8 +11,12 @@ import { navigationRef } from './RootNavigation';
 import MainScreen from './Screens/MainScreen';
 import LoginScreen from './Screens/LoginScreen';
 import HomeScreen from './Screens/HomeScreen';
+import Details from "./Screens/SignUpScreens/Details"
+import Preferences from './Screens/SignUpScreens/Prefences';
+import Options from './Screens/SignUpScreens/Options';
 
 const Stack = createNativeStackNavigator()
+
 
 export default function App() {
 
@@ -22,6 +26,9 @@ export default function App() {
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SignUpPageOne" component={Details} />
+        <Stack.Screen name="SignUpPageTwo" component={Preferences} />
+        <Stack.Screen name="SignUpPageThree" component={Options} />
       </Stack.Navigator>
     </NavigationContainer>
   );
