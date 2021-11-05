@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Pressable, Text, StyleSheet, View } from "react-native"
+import store from '../store';
 
 function Icon(props) {
     const [isSelected, setIsSelected] = useState(false)
+
     return (
         <Pressable style={isSelected ? styles.iconSelected : styles.icon} onPress={() => {
             if (isSelected) {
                 setIsSelected(false)
+                store["cuisine"].delete(props.name)
             } else {
                 setIsSelected(true)
+                store["cuisine"].add(props.name)
             }
         }}>
             <View style={styles.row}>

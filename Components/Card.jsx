@@ -1,13 +1,16 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ImageBackground } from "react-native"
+import { View, Text, StyleSheet, ImageBackground } from "react-native"
+import { Icon } from 'react-native-elements'
 
 function Card(props) {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                {/* change the images to  */}
                 <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: "https://picsum.photos/seed/picsum/1920/1080" }}>
                     <View style={styles.cardDescription}>
+                        <View style={styles.icon}>
+                            <Icon name='info' type='material' color='black' />
+                        </View>
                         <Text style={styles.cardHeading}>Restaurant name</Text>
                         <Text style={styles.cardBody}>Food Item</Text>
                         <Text style={styles.cardBody}>Item Description</Text>
@@ -63,6 +66,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         margin: 5,
         marginLeft: 20,
+    },
+    icon: {
+        position: "absolute",
+        right: 10,
+        top: 10
     }
 })
 

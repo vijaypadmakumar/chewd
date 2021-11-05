@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, ScrollView } from "react-native"
 import Card from '../Components/Card';
 import * as RootNavigation from "../RootNavigation"
+import store from '../store';
 
 // TODO
 // once the user is verified and is on the home screen
@@ -11,12 +12,10 @@ import * as RootNavigation from "../RootNavigation"
 let a = []
 
 function HomeScreen() {
+
+    console.log(store)
     return (
         <View style={styles.container}>
-            {/* <ScrollView style={{ margin: 100 }} horizontal={true}>
-                <Card />
-            </ScrollView> */}
-            {/* <Text>Home Screen</Text> */}
             <Card />
         </View>
     );

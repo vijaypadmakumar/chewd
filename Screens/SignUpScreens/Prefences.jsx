@@ -11,7 +11,7 @@ import Icon from '../../Components/Icon';
  */
 
 // this should display all the cuisines around the user as small flags
-// 
+// the user should not be allowed to move forward until they select atleast one option
 
 function Preferences() {
     // change the FlatList data source to have cuisines instead of countries

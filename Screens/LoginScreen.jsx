@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Text } from "react-native"
 import Button from "../Components/Button";
+import store from "../store";
 
 function LoginScreen({ navigation }) {
 
@@ -12,10 +13,16 @@ function LoginScreen({ navigation }) {
             <Text style={styles.text}>Welcome back!</Text>
             <View onPress={Keyboard.dismiss}>
                 <TouchableWithoutFeedback >
-                    <TextInput style={styles.input} placeholder="Username" onChangeText={text => setUserName(text)} value={userName} />
+                    <TextInput style={styles.input} placeholder="Username" onChangeText={text => {
+                        setUserName(text)
+                        store["username"] = text
+                    }} value={userName} />
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback>
-                    <TextInput style={styles.input} secureTextEntry={true} placeholder="Password" onChangeText={text => setPassword(text)} value={password} />
+                    <TextInput style={styles.input} secureTextEntry={true} placeholder="Password" onChangeText={text => {
+                        setPassword(text)
+                        store["password"] = text
+                    }} value={password} />
                 </TouchableWithoutFeedback>
             </View>
             <Button title="Continue" action="Home" />
