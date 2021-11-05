@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet, Text, TextInput, Keyboard, FlatList, Pressable } from "react-native"
 import Button from '../../Components/Button';
 import * as RootNavigation from "../../RootNavigation"
-import flags from "../../assets/icons/flags"
-import Icon2 from '../../Components/Icon';
+import cuisines from "../../assets/icons/cuisines"
+import Icon from '../../Components/Icon';
 
 /**
  * 
@@ -13,17 +13,6 @@ import Icon2 from '../../Components/Icon';
 // this should display all the cuisines around the user as small flags
 // 
 
-const icons = []
-function getIcons() {
-    for (let flag in flags) {
-        if (flags.hasOwnProperty(flag)) {
-            icons.push({ "key": flags[flag].emoji, "country": flags[flag].name })
-        }
-    }
-}
-
-getIcons()
-
 function Preferences() {
     // change the FlatList data source to have cuisines instead of countries
     return (
@@ -31,8 +20,8 @@ function Preferences() {
             <Text style={styles.heading}>So what do you like?</Text>
             <View style={styles.cuisines}>
                 <FlatList
-                    data={icons}
-                    renderItem={({ item }) => <Icon2 emoji={item.key} name={item.country} />}
+                    data={cuisines["cuisine"]}
+                    renderItem={({ item }) => <Icon name={item} />}
                 />
             </View>
             <Pressable style={styles.button} onPress={() => {

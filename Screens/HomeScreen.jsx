@@ -11,15 +11,13 @@ import * as RootNavigation from "../RootNavigation"
 let a = []
 
 function HomeScreen() {
-    // RootNavigation.navigationRef.resetRoot({
-    //     title: "Home",
-    //     container: HomeScreen
-    // })
     return (
         <View style={styles.container}>
-            <ScrollView style={{ margin: 100 }} horizontal={true}>
+            {/* <ScrollView style={{ margin: 100 }} horizontal={true}>
                 <Card />
-            </ScrollView>
+            </ScrollView> */}
+            {/* <Text>Home Screen</Text> */}
+            <Card />
         </View>
     );
 }

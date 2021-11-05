@@ -10,7 +10,8 @@ function Card(props) {
                     <View style={styles.cardDescription}>
                         <Text style={styles.cardHeading}>Restaurant name</Text>
                         <Text style={styles.cardBody}>Food Item</Text>
-                        <Text style={styles.cardBody}>Food Item</Text>
+                        <Text style={styles.cardBody}>Item Description</Text>
+                        <Text style={styles.cardBody}>Location</Text>
                     </View>
                 </ImageBackground>
             </View>
@@ -51,19 +52,17 @@ const styles = StyleSheet.create({
     cardBody: {
         textAlign: 'left',
         color: "black",
-        fontSize: 18,
+        fontSize: 15,
         margin: 5,
         marginLeft: 20,
-        fontFamily: "Times New Roman"
     },
     cardHeading: {
         textAlign: 'left',
         fontWeight: 'bold',
         color: "black",
-        fontSize: 28,
+        fontSize: 25,
         margin: 5,
         marginLeft: 20,
-        fontFamily: "Times New Roman"
     }
 })
 

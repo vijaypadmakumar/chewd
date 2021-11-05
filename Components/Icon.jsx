@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Pressable, Icon, Text, StyleSheet, View } from "react-native"
-import * as RootNavigation from "../RootNavigation"
+import { Pressable, Text, StyleSheet, View } from "react-native"
 
-function Icon2(props) {
+function Icon(props) {
     const [isSelected, setIsSelected] = useState(false)
     return (
         <Pressable style={isSelected ? styles.iconSelected : styles.icon} onPress={() => {
@@ -13,12 +12,13 @@ function Icon2(props) {
             }
         }}>
             <View style={styles.row}>
-                <Text style={styles.emoji}>{props.emoji}</Text>
-                <Text style={styles.emojiDesc} >{props.name}</Text>
+                <Text style={styles.cuisine} >{props.name}</Text>
             </View>
         </Pressable>
     );
 }
+
+export default Icon;
 
 const styles = StyleSheet.create({
     icon: {
@@ -43,19 +43,10 @@ const styles = StyleSheet.create({
         shadowOpacity: .9,
         shadowRadius: 10,
     },
-    emoji: {
-        textAlign: "left",
-        margin: 20,
-        fontSize: 30,
-    },
-    row: {
-    },
-    emojiDesc: {
+    cuisine: {
         position: "absolute",
         top: 25,
-        left: 100,
+        left: 50,
         fontSize: 20
     },
 })
-
-export default Icon2;
