@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Keyboard } from "react-native"
+import { View, StyleSheet, Text, TextInput, Keyboard, Alert } from "react-native"
 import Button from '../../Components/Button';
 import * as RootNavigation from "../../RootNavigation"
+import store from '../../store';
 
 /**
  * This function will return a render method
@@ -18,15 +19,41 @@ function SignUpPageDetails() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    function verifyAndSetEmail(emailProvied) {
+        // check if the email provided is a valid one otherwise 
+        // const isValidEmail = (emailProvied) => {
+        //     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        //     return re.test(String(emailProvied).toLowerCase());
+        // }
+        // isValidEmail() ? setEmail(emailProvied) : (
+        //     Alert.alert("Email Error", "The email you've provied doesn't seem to be valid", [
+        //         {
+        //             text: "Ok",
+        //             style: "cancel",
+        //         }
+        //     ])
+        // )
+        // console.log(isValidEmail)
+        console.log(emailProvied)
+    }
+
+    function verifyAndSetPassword() {
+        // check password and set
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Let's get you signed up!</Text>
-            <TextInput onPressOut={Keyboard.dismiss} placeholder="Name" style={styles.input} onChangeText={(text) => setFullName(text)} value={fullName} />
-            <TextInput placeholder="Email Address" style={styles.input} onChangeText={(text) => {
-                setEmail(text)
-            }} value={email} />
-            <TextInput placeholder="Password" style={styles.input} secureTextEntry={true} onChangeText={(text) => setPassword(text)} value={password} />
-            <Button title="Contine" action="SignUpPageTwo" />
+            <TextInput onPressOut={Keyboard.dismiss} placeholder="Name" style={styles.input} onChangeText={(fullName) => {
+                setFullName(fullName)
+                store["fullName"] = fullName
+
+            }} value={fullName} />
+            <TextInput onEndEditing={verifyAndSetEmail(email)} placeholder="Email Address" style={styles.input} onChangeText={(email) => setEmail(email)} value={email} />
+            <TextInput placeholder="Password" style={styles.input} secureTextEntry={true} onChangeText={(text) => {
+                setPassword(text)
+            }} value={password} />
+            <Button title="Continue" action="SignUpPageTwo" />
         </View >
     );
 }
@@ -46,7 +73,7 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 30,
         backgroundColor: "white",
         borderColor: "white"
     },

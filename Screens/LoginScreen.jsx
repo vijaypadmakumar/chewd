@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Text } from "react-native"
+import { View, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Text, Alert } from "react-native"
 import Button from "../Components/Button";
+import Help from "../Components/Help";
 import store from "../store";
 
-function LoginScreen({ navigation }) {
+function LoginScreen() {
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -25,14 +26,17 @@ function LoginScreen({ navigation }) {
                     }} value={password} />
                 </TouchableWithoutFeedback>
             </View>
-            <Button title="Continue" action="Home" />
+            <Help helpTitle="Forgot details?" />
+            <Button isDisabled={
+                (userName === "" || password === "") ? "none" : null
+            } title="Continue" action="Home" />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#61A6AB",
+        backgroundColor: "#F3F0D7",
         width: "100%",
         height: "100%",
         flex: 1,
@@ -43,18 +47,17 @@ const styles = StyleSheet.create({
         width: 250,
         height: 60,
         margin: 12,
-        borderWidth: 1,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 30,
         backgroundColor: "white",
         borderColor: "white"
     },
     text: {
         textAlign: 'center',
         fontWeight: "bold",
-        fontSize: 35,
-        color: "#FFCE6D",
-        paddingBottom: 50
+        fontSize: 50,
+        paddingBottom: 20,
+        color: "black"
     }
 })
 
