@@ -1,25 +1,31 @@
 import React from 'react';
-import { Pressable, Text, StyleSheet } from 'react-native';
+import { Pressable, Text, StyleSheet, Alert } from 'react-native';
 import * as RootNavigation from "../RootNavigation"
 
+function getButtonStyle(buttonType) {
+    // returns the button styling based on the title
+    switch (buttonType) {
+        case "Login":
+            return styles.loginButton
+        case "Sign Up":
+            return styles.registerButton
+        case "Continue":
+            return styles.continueButton
+        default:
+            return styles.defaultButton
+    }
+}
+
 function Button(props) {
-
-    // this is done to change styles depending on the button type
-    // is there another way to do it?
-    let buttonType = (props.title === "Login") ? styles.loginButton : styles.registerButton
-
+    const buttonType = getButtonStyle(props.title)
     return (
         <Pressable style={buttonType} onPress={() => {
-            console.log(props.title + " button clicked" + " action " + props.action)
-
-            /*
-            wasn't able to access the naviagtion property
-            using this navigate function 
-                with params (route, data)
-                each button has an attribute named action
-                action gives the next screen route name
-            */
-            RootNavigation.navigate(props.action, null)
+            props.isDisabled !== "none" ? RootNavigation.navigate(props.action, null) : Alert.alert("Input Error", "You haven't provided your input details.", [
+                {
+                    text: "Ok",
+                    style: "cancel"
+                }
+            ])
         }}>
             <Text style={styles.text}>{props.title}</Text>
         </Pressable>
@@ -28,25 +34,42 @@ function Button(props) {
 
 export default Button;
 
+const button = StyleSheet.create({
+    button: {
+        width: 250,
+        height: 60,
+        borderRadius: 30,
+        margin: 10,
+    }
+})
+
 const styles = StyleSheet.create({
     loginButton: {
-        width: 250,
-        height: 60,
-        backgroundColor: "#FFCE6D",
-        borderRadius: 10,
-        margin: 10
+        ...button.button,
+        backgroundColor: "#FFBF86",
     },
     registerButton: {
-        width: 250,
-        height: 60,
+        ...button.button,
+        backgroundColor: "white",
+    },
+    continueButton: {
+        ...button.button,
+        backgroundColor: "grey"
+    },
+    defaultButton: {
+        position: "absolute",
+        bottom: 20,
+        left: 40,
         backgroundColor: "#FDFCE5",
-        borderRadius: 10,
-        margin: 10
+        width: "80%",
+        height: 60,
+        borderRadius: 25,
+        opacity: 1
     },
     text: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 18,
-        margin: 20
-    }
+        margin: 20,
+    },
 })
