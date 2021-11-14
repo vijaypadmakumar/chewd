@@ -24,28 +24,27 @@ function Icon(props) {
 
 export default Icon;
 
-const styles = StyleSheet.create({
+const cuisineIcon = StyleSheet.create({
     icon: {
         width: "95%",
         height: 80,
         borderRadius: 40,
         backgroundColor: "white",
         margin: 10,
+    }
+})
+
+const styles = StyleSheet.create({
+    icon: {
+        ...cuisineIcon.icon,
         shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 0.5 },
-        shadowOpacity: 0.9,
-        shadowRadius: 1,
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
     },
     iconSelected: {
-        width: "95%",
-        height: 80,
-        borderRadius: 40,
-        backgroundColor: "grey",
-        margin: 10,
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 0.5 },
-        shadowOpacity: .9,
-        shadowRadius: 10,
+        ...cuisineIcon.icon,
+        opacity: .5
     },
     cuisine: {
         position: "absolute",

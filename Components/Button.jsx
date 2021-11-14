@@ -12,14 +12,14 @@ function getButtonStyle(buttonType) {
         case "Continue":
             return styles.continueButton
         default:
-            return styles.continueButton
+            return styles.defaultButton
     }
 }
 
 function Button(props) {
     const buttonType = getButtonStyle(props.title)
     return (
-        <Pressable style={{ ...buttonType }} onPress={() => {
+        <Pressable style={buttonType} onPress={() => {
             props.isDisabled !== "none" ? RootNavigation.navigate(props.action, null) : Alert.alert("Input Error", "You haven't provided your input details.", [
                 {
                     text: "Ok",
@@ -55,6 +55,16 @@ const styles = StyleSheet.create({
     continueButton: {
         ...button.button,
         backgroundColor: "grey"
+    },
+    defaultButton: {
+        position: "absolute",
+        bottom: 20,
+        left: 40,
+        backgroundColor: "#FDFCE5",
+        width: "80%",
+        height: 60,
+        borderRadius: 25,
+        opacity: 1
     },
     text: {
         textAlign: 'center',

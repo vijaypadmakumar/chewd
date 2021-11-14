@@ -24,31 +24,21 @@ function Preferences() {
                     renderItem={({ item }) => <Icon name={item} />}
                 />
             </View>
-            <Pressable style={styles.button} onPress={() => {
-                console.log()
-                RootNavigation.navigate("SignUpPageThree")
-            }}>
-                <Text style={styles.text}>Continue</Text>
-            </Pressable>
+            <Button title="Next" action="SignUpPageThree" />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "white",
+        backgroundColor: "#ffce6d",
         width: "100%",
         height: "100%",
         flex: 1,
 
     },
     cuisines: {
-        paddingTop: 50,
-        flexDirection: "row",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
-        alignContent: "center",
-        textAlign: "center"
+
     }
     ,
     item: {
@@ -59,12 +49,7 @@ const styles = StyleSheet.create({
     button: {
         position: "absolute",
         bottom: 20,
-        left: 40,
-        backgroundColor: "#FDFCE5",
-        width: "80%",
-        height: 60,
-        borderRadius: 25,
-        opacity: .9
+        left: 80
     },
     text: {
         textAlign: 'center',

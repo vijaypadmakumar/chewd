@@ -12,7 +12,7 @@ function Options() {
                 RootNavigation.navigate("Loading")
             }}>
 
-                <Text style={styles.text}>Continue</Text>
+                <Text style={styles.text}>Next</Text>
             </Pressable>
         </View>
     );
