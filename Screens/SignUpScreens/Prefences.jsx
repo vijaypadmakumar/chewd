@@ -37,10 +37,6 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
-    cuisines: {
-
-    }
-    ,
     item: {
         padding: 10,
         fontSize: 18,

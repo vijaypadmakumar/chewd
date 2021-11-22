@@ -11,14 +11,17 @@ function getButtonStyle(buttonType) {
             return styles.registerButton
         case "Continue":
             return styles.continueButton
+        case "Next":
+            return styles.nextButton
         default:
-            return styles.defaultButton
+            return styles.registerButton
     }
 }
 
 function Button(props) {
     const buttonType = getButtonStyle(props.title)
     return (
+        // change this -> make a sub component?
         <Pressable style={buttonType} onPress={() => {
             props.isDisabled !== "none" ? RootNavigation.navigate(props.action, null) : Alert.alert("Input Error", "You haven't provided your input details.", [
                 {
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
         ...button.button,
         backgroundColor: "grey"
     },
-    defaultButton: {
+    nextButton: {
         position: "absolute",
         bottom: 20,
         left: 40,
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
         width: "80%",
         height: 60,
         borderRadius: 25,
-        opacity: 1
+        opacity: .8
     },
     text: {
         textAlign: 'center',

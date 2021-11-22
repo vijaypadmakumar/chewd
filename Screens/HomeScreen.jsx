@@ -1,17 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView, Dimensions } from "react-native"
+import { View, StyleSheet } from "react-native"
 import Card from '../Components/Card';
 import * as RootNavigation from "../RootNavigation"
 import store from '../store';
-import { Icon } from "react-native-elements"
 import BottomBar from '../Components/BottomBar';
+
+import MainScreen from './MainScreen';
 
 // TODO
 // once the user is verified and is on the home screen
 // they should not be allowed to go back to the login pages
 // -> try resetting the navigation stack
 
-let a = []
+
 
 function HomeScreen() {
 

@@ -7,7 +7,7 @@ function Card(props) {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: url[1] }}>
+                <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: url[0] }}>
                     <View style={styles.cardDescription}>
                         <Text style={styles.cardHeading}>Pizza from PizzaPlace</Text>
                     </View>
