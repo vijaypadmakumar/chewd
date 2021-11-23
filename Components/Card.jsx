@@ -20,22 +20,17 @@ function Card(props) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#ffffff",
-        width: "100%",
-        height: "100%",
         flex: 1,
         alignItems: "center",
-        justifyContent: 'center',
-        textAlign: "center",
-
     },
     card: {
         width: "95%",
-        height: "70%",
+        height: "75%",
         position: "absolute",
-        top: 120,
+        top: 40,
         shadowColor: 'grey',
         shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: .8,
+        shadowOpacity: .5,
         shadowRadius: 10,
     },
     cardDescription: {

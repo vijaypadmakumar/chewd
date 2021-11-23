@@ -14,7 +14,7 @@ function getButtonStyle(buttonType) {
         case "Next":
             return styles.nextButton
         default:
-            return styles.registerButton
+            return styles.defaultButton
     }
 }
 
@@ -68,6 +68,10 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: 25,
         opacity: .8
+    },
+    defaultButton: {
+        ...button.button,
+        backgroundColor: "grey"
     },
     text: {
         textAlign: 'center',

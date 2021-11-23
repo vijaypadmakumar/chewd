@@ -1,24 +1,24 @@
 import React from 'react';
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, Text } from "react-native"
 import Card from '../Components/Card';
-import * as RootNavigation from "../RootNavigation"
 import store from '../store';
 import BottomBar from '../Components/BottomBar';
-
-import MainScreen from './MainScreen';
 
 // TODO
 // once the user is verified and is on the home screen
 // they should not be allowed to go back to the login pages
 // -> try resetting the navigation stack
 
-
+// change the title bar to a seperate component
 
 function HomeScreen() {
 
     console.log(store)
     return (
         <View style={styles.container}>
+            <View style={styles.titleBar}>
+                <Text style={styles.brandTitle}>Chewd</Text>
+            </View>
             <Card />
             <BottomBar />
         </View>
@@ -49,6 +49,21 @@ const styles = StyleSheet.create({
     items: {
         flexDirection: "row",
         paddingLeft: 150
+    },
+    titleBar: {
+        width: "100%",
+        height: 100,
+        backgroundColor: "white",
+        shadowColor: 'grey',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: .1,
+        shadowRadius: 10,
+    },
+    brandTitle: {
+        textAlign: 'center',
+        marginTop: 50,
+        fontSize: 28,
+        fontWeight: "bold"
     }
 })
 

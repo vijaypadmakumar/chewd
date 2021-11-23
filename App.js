@@ -16,6 +16,7 @@ import Preferences from './Screens/SignUpScreens/Prefences';
 import Options from './Screens/SignUpScreens/Options';
 import Option from './Screens/SignUpScreens/Option';
 import Loading from './Screens/Loading';
+import AccountScreen from './Screens/AccountScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="SignUpPageTwo" component={Preferences} />
         <Stack.Screen name="SignUpPageThree" component={Options} />
         <Stack.Screen name="Loading" component={Loading} />
+        <Stack.Screen name="AccountScreen" component={AccountScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

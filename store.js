@@ -1,7 +1,7 @@
 const store = {
     "cuisine": new Set(),
     "password": "",
-    "username": ""
+    "username": "",
 }
 
 export default store
