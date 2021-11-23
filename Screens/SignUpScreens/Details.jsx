@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Keyboard, Alert } from "react-native"
+import { View, StyleSheet, Text, TextInput, Keyboard, Alert, TouchableWithoutFeedback } from "react-native"
 import Button from '../../Components/Button';
 import * as RootNavigation from "../../RootNavigation"
 import store from '../../store';
@@ -42,19 +42,21 @@ function SignUpPageDetails() {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Let's get you signed up!</Text>
-            <TextInput onPressOut={Keyboard.dismiss} placeholder="Name" style={styles.input} onChangeText={(fullName) => {
-                setFullName(fullName)
-                store["fullName"] = fullName
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={styles.container}>
+                <Text style={styles.text}>Let's get you signed up!</Text>
+                <TextInput onPressOut={Keyboard.dismiss} placeholder="Name" style={styles.input} onChangeText={(fullName) => {
+                    setFullName(fullName)
+                    store["fullName"] = fullName
 
-            }} value={fullName} />
-            <TextInput onEndEditing={verifyAndSetEmail(email)} placeholder="Email Address" style={styles.input} onChangeText={(email) => setEmail(email)} value={email} />
-            <TextInput placeholder="Password" style={styles.input} secureTextEntry={true} onChangeText={(text) => {
-                setPassword(text)
-            }} value={password} />
-            <Button title="Continue" action="SignUpPageTwo" />
-        </View >
+                }} value={fullName} />
+                <TextInput onEndEditing={verifyAndSetEmail(email)} placeholder="Email Address" style={styles.input} onChangeText={(email) => setEmail(email)} value={email} />
+                <TextInput placeholder="Password" style={styles.input} secureTextEntry={true} onChangeText={(text) => {
+                    setPassword(text)
+                }} value={password} />
+                <Button title="Next" action="SignUpPageTwo" />
+            </View >
+        </TouchableWithoutFeedback>
     );
 }
 
