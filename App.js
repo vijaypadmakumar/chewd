@@ -17,6 +17,7 @@ import Options from './Screens/SignUpScreens/Options';
 import Option from './Screens/SignUpScreens/Option';
 import Loading from './Screens/Loading';
 import AccountScreen from './Screens/AccountScreen';
+import ChatScreen from './Screens/ChatScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -29,12 +30,11 @@ export default function App() {
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Option" component={Option} />
-        <Stack.Screen name="SignUpPageOne" component={Details} />
-        <Stack.Screen name="SignUpPageTwo" component={Preferences} />
-        <Stack.Screen name="SignUpPageThree" component={Options} />
         <Stack.Screen name="Loading" component={Loading} />
-        <Stack.Screen name="AccountScreen" component={AccountScreen} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        <Stack.Group screenOptions={{ presentation: "modal" }}>
+          <Stack.Screen name="AccountScreen" component={AccountScreen} />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );

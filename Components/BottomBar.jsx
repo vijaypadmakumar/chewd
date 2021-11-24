@@ -13,11 +13,11 @@ function BottomBar(props) {
                 <Icon size={iconSize} name='albums' type='ionicon' color='grey' onPress={() => {
                     console.log("recommendations clicked")
                 }} />
-                <Icon size={iconSize} name='restaurant' type='ionicon' color='pink' onPress={() => {
+                <Icon size={iconSize} name='flash-outline' type='ionicon' color='pink' onPress={() => {
                     console.log("popular restaurants clicked")
                 }} />
                 <Icon size={iconSize} name='chatbubble' type='ionicon' color='dodgerblue' onPress={() => {
-                    console.log("messages clicked")
+                    RootNavigation.navigate("ChatScreen")
                 }} />
             </View>
         </View>
