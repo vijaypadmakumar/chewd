@@ -30,6 +30,10 @@ export default function App() {
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Option" component={Option} />
+        <Stack.Screen name="SignUpPageOne" component={Details} />
+        <Stack.Screen name="SignUpPageTwo" component={Preferences} />
+        <Stack.Screen name="SignUpPageThree" component={Options} />
         <Stack.Screen name="Loading" component={Loading} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Group screenOptions={{ presentation: "modal" }}>

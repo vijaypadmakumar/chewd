@@ -1,22 +1,51 @@
 import React from 'react';
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, ScrollView } from "react-native"
 
 function ChatScreen(props) {
     return (
         <View style={styles.container}>
-            <Text>ChatScreen</Text>
+            <ScrollView >
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+                <View style={styles.chatGroups}>
+                    <Text>ChatBox</Text>
+                </View>
+            </ScrollView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "white",
-        width: "100%",
-        height: "100%",
         flex: 1,
-        alignItems: "center",
         justifyContent: 'center',
+    },
+    chatGroups: {
+        width: "95%",
+        height: 80,
+        backgroundColor: "red",
+        padding: 20,
+        margin: 10,
+        borderRadius: 60
     }
 })
 

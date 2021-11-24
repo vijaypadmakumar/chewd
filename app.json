@@ -6,7 +6,8 @@
     "orientation": "portrait",
     "splash": {
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#CEE5D0",
+      "image":"./assets/images/logo.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

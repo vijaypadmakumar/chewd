@@ -19,13 +19,7 @@ function HomeScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.titleBar}>
-                {/* <Text style={styles.brandTitle}>Chewd</Text> */}
                 <Image style={styles.brandTitle} source={require("../assets/images/logo.png")} />
-                <View style={styles.settingsIcon}>
-                    <Icon size={40} name='person-circle' type='ionicon' color='darkgrey' onPress={() => {
-                        RootNavigation.navigate("AccountScreen")
-                    }} />
-                </View>
             </View>
             <Card />
             <BottomBar />

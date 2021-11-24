@@ -19,6 +19,9 @@ function BottomBar(props) {
                 <Icon size={iconSize} name='chatbubble' type='ionicon' color='dodgerblue' onPress={() => {
                     RootNavigation.navigate("ChatScreen")
                 }} />
+                <Icon size={iconSize + 8} name='person-circle' type='ionicon' color='darkgrey' onPress={() => {
+                    RootNavigation.navigate("AccountScreen")
+                }} />
             </View>
         </View>
     );
