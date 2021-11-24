@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet } from "react-native"
 import { Icon } from 'react-native-elements'
 import * as RootNavigation from "../RootNavigation"
-import AccountScreen from "../Screens/AccountScreen";
 import store from "../store";
 
 const iconSize = 32
@@ -11,10 +10,13 @@ function BottomBar(props) {
     return (
         <View style={styles.bar}>
             <View style={styles.iconLayout}>
-                <Icon size={iconSize} name='person' type='ionicon' color='grey' onPress={() => {
-                    RootNavigation.navigate("AccountScreen")
+                <Icon size={iconSize} name='albums' type='ionicon' color='grey' onPress={() => {
+                    console.log("recommendations clicked")
                 }} />
-                <Icon size={iconSize} name='chatbubble' type='ionicon' color='grey' onPress={() => {
+                <Icon size={iconSize} name='restaurant' type='ionicon' color='pink' onPress={() => {
+                    console.log("popular restaurants clicked")
+                }} />
+                <Icon size={iconSize} name='chatbubble' type='ionicon' color='dodgerblue' onPress={() => {
                     console.log("messages clicked")
                 }} />
             </View>

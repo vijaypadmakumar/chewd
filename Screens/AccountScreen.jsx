@@ -27,6 +27,7 @@ function AccountScreen(props) {
                                     <Button title="Update details" />
                                     <Button title="Update preferences" />
                                     <Button title="Delete account" />
+                                    <Button title="Log out" />
                                 </View>
                             </View>
                         </View>

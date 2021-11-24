@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text } from "react-native"
+import { View, StyleSheet, Image } from "react-native"
+import { Icon } from 'react-native-elements'
 import Card from '../Components/Card';
 import store from '../store';
 import BottomBar from '../Components/BottomBar';
+import * as RootNavigation from "../RootNavigation"
 
 // TODO
 // once the user is verified and is on the home screen
@@ -17,7 +19,13 @@ function HomeScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.titleBar}>
-                <Text style={styles.brandTitle}>Chewd</Text>
+                {/* <Text style={styles.brandTitle}>Chewd</Text> */}
+                <Image style={styles.brandTitle} source={require("../assets/images/logo.png")} />
+                <View style={styles.settingsIcon}>
+                    <Icon size={40} name='person-circle' type='ionicon' color='darkgrey' onPress={() => {
+                        RootNavigation.navigate("AccountScreen")
+                    }} />
+                </View>
             </View>
             <Card />
             <BottomBar />
@@ -53,17 +61,23 @@ const styles = StyleSheet.create({
     titleBar: {
         width: "100%",
         height: 100,
-        backgroundColor: "white",
+        backgroundColor: "#CEE5D0",
         shadowColor: 'grey',
         shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: .1,
+        shadowOpacity: .25,
         shadowRadius: 10,
+        flex: .14,
     },
     brandTitle: {
-        textAlign: 'center',
         marginTop: 50,
-        fontSize: 28,
-        fontWeight: "bold"
+        width: 150,
+        height: 60,
+        alignSelf: "center"
+    },
+    settingsIcon: {
+        position: "absolute",
+        marginTop: 55,
+        left: 10,
     }
 })
 
