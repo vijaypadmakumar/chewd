@@ -6,6 +6,9 @@ import store from '../store';
 import BottomBar from '../Components/BottomBar';
 import * as RootNavigation from "../RootNavigation"
 
+// data
+import recommendations from '../assets/data/recommendations';
+
 // TODO
 // once the user is verified and is on the home screen
 // they should not be allowed to go back to the login pages
@@ -21,7 +24,7 @@ function HomeScreen() {
             <View style={styles.titleBar}>
                 <Image style={styles.brandTitle} source={require("../assets/images/logo.png")} />
             </View>
-            <Card />
+            <Card data={recommendations[0]} />
             <BottomBar />
         </View>
     );
