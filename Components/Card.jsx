@@ -1,11 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native"
 import { Icon } from 'react-native-elements'
+import { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 
 const iconSize = 50
 
 function Card(props) {
     const { name, restaurantName, image } = props.data
+
+    const sharedValue = useSharedValue(0)
+
+    const cartStyle = useAnimatedStyle(() => {
+        opacity: sharedValue.value
+    })
+
     return (
         <View style={styles.container}>
             <View style={styles.card}>

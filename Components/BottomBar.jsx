@@ -11,10 +11,10 @@ function BottomBar(props) {
         <View style={styles.bar}>
             <View style={styles.iconLayout}>
                 <Icon size={iconSize} name='albums' type='ionicon' color='grey' onPress={() => {
-                    console.log("recommendations clicked")
+                    RootNavigation.navigate("Home")
                 }} />
                 <Icon size={iconSize} name='flash-outline' type='ionicon' color='pink' onPress={() => {
-                    console.log("popular restaurants clicked")
+                    RootNavigation.navigate("Home")
                 }} />
                 <Icon size={iconSize} name='chatbubble' type='ionicon' color='dodgerblue' onPress={() => {
                     RootNavigation.navigate("ChatScreen")

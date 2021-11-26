@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
-import * as RootNavigation from "../RootNavigation"
+import React from 'react';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import { Icon } from 'react-native-elements'
 import Button from "../Components/Button";
 
@@ -20,7 +19,7 @@ function AccountScreen(props) {
                             <Button title="Update details" />
                             <Button title="Update preferences" />
                             <Button title="Delete account" />
-                            <Button title="Log out" />
+                            <Button title="Log out" action="Main" />
                         </View>
                     </View>
                 </View>
