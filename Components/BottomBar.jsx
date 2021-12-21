@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet } from "react-native"
 import { Icon } from 'react-native-elements'
 import * as RootNavigation from "../RootNavigation"
-import store from "../store";
 
 const iconSize = 32
 
@@ -11,15 +10,19 @@ function BottomBar(props) {
         <View style={styles.bar}>
             <View style={styles.iconLayout}>
                 <Icon size={iconSize} name='albums' type='ionicon' color='grey' onPress={() => {
+                    console.log("main recommendations")
                     RootNavigation.navigate("Home")
                 }} />
                 <Icon size={iconSize} name='flash-outline' type='ionicon' color='pink' onPress={() => {
+                    console.log("extra recommendations")
                     RootNavigation.navigate("Home")
                 }} />
                 <Icon size={iconSize} name='chatbubble' type='ionicon' color='dodgerblue' onPress={() => {
+                    console.log("chat screen")
                     RootNavigation.navigate("ChatScreen")
                 }} />
                 <Icon size={iconSize + 8} name='person-circle' type='ionicon' color='darkgrey' onPress={() => {
+                    console.log("account screen")
                     RootNavigation.navigate("AccountScreen")
                 }} />
             </View>

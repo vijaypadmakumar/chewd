@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import { Icon } from 'react-native-elements'
 import Button from "../Components/Button";
 
+// Refactor this
+
 function AccountScreen(props) {
 
     const profilePictureURL = "https://pbs.twimg.com/profile_images/1296554590746353670/4hJASIDi_400x400.jpg"

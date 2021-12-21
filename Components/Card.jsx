@@ -1,37 +1,54 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native"
 import { Icon } from 'react-native-elements'
-import { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler } from "react-native-reanimated";
+import { PanGestureHandler } from "react-native-gesture-handler"
 
 const iconSize = 50
 
 function Card(props) {
     const { name, restaurantName, image } = props.data
 
-    const sharedValue = useSharedValue(0)
+    const sharedValue = useSharedValue(1)
+    const x = useSharedValue(0)
+    const rotate = useSharedValue(0)
 
-    const cartStyle = useAnimatedStyle(() => {
-        opacity: sharedValue.value
+    const gestureHandler = useAnimatedGestureHandler({
+        onStart: _ => {
+            console.log("gesture started")
+        },
+        onActive: event => {
+            console.log("gesture active :" + event.translationX)
+        },
+        onEnd: _ => {
+            console.log("gesture finished")
+        },
     })
 
+
+    const cardStyle = useAnimatedStyle(() => {
+        return {
+            opacity: sharedValue.value,
+            transform: [{ translateX: x.value }, { rotateZ: rotate.value },]
+        }
+    })
+
+    /*
+    Need to move the animation code into HomeScreen
+    */
+
     return (
+        // <PanGestureHandler onGestureEvent={gestureHandler}>
         <View style={styles.container}>
-            <View style={styles.card}>
+            <Animated.View style={[styles.card, cardStyle]}>
                 <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: image }}>
                     <View style={styles.cardDescription}>
                         <Text style={styles.cardHeading}>{`${name} from ${restaurantName}`}</Text>
-                        <View style={styles.likeDislike}>
-                            <Icon size={iconSize} name='heart' type='ionicon' color='red' onPress={() => {
-                                console.log("like card clicked")
-                            }} />
-                            <Icon size={iconSize} name='heart-dislike' type='ionicon' color='lightgrey' onPress={() => {
-                                console.log("disklike card clicked")
-                            }} />
-                        </View>
                     </View>
                 </ImageBackground>
-            </View>
-        </View>
+            </Animated.View>
+        </View >
+        // </PanGestureHandler>
     );
 }
 
@@ -50,7 +67,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 10 },
         shadowOpacity: .5,
         shadowRadius: 10,
-        flex: 1
+        zIndex: -1
     },
     cardDescription: {
         margin: 20,
@@ -59,7 +76,6 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         justifyContent: "flex-end",
-        alignItems: "center",
         borderRadius: 10,
     },
     cardHeading: {
@@ -73,15 +89,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 10,
 
-    },
-    likeDislike: {
-        marginTop: 20,
-        flexDirection: "row",
-        justifyContent: "space-around",
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: .3,
-        shadowRadius: 10,
     }
 })
 

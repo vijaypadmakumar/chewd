@@ -19,11 +19,12 @@ const styles = StyleSheet.create({
         shadowOpacity: .25,
         shadowRadius: 10,
         flex: .14,
+        zIndex: 100,
     },
     brandTitle: {
         marginTop: 50,
         width: 150,
-        height: 60,
+        height: 50,
         alignSelf: "center"
     },
     settingsIcon: {

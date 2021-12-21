@@ -1,36 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import BottomBar from '../Components/BottomBar';
+import ChatBox from '../Components/ChatBox';
+import TitleBar from '../Components/TitleBar'
 
 function ChatScreen(props) {
+
+    const groups = ["", "", "", "", "", "", ""]
+    // whenever a new group is created update this list
+
     return (
         <View style={styles.container}>
+            <TitleBar />
             <View style={styles.chatArea}>
-                <ScrollView >
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
-                    <View style={styles.chatGroups}>
-                        <Text>ChatBox</Text>
-                    </View>
+                <ScrollView>
+                    {
+                        groups.map((group) => {
+                            return <ChatBox groupName="Group Name" />
+                        })
+                    }
                 </ScrollView>
             </View>
             <BottomBar />
@@ -41,7 +29,6 @@ function ChatScreen(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: "center"
     },
     chatGroups: {
@@ -53,7 +40,10 @@ const styles = StyleSheet.create({
         borderRadius: 60
     },
     chatArea: {
+        flex: 1,
         alignSelf: "stretch",
+        alignContent: "center",
+        marginTop: 20,
     }
 })
 
