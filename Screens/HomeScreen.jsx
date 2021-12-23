@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, Dimensions, useWindowDimensions } from "react-native"
 import Card from '../Components/Card';
 import store from '../store';
 import BottomBar from '../Components/BottomBar';
 import * as RootNavigation from "../RootNavigation"
-import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler } from "react-native-reanimated";
+import Animated, {
+    useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler, useDerivedValue, interpolate
+} from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler"
 
 // data
@@ -18,24 +20,44 @@ import TitleBar from '../Components/TitleBar';
 
 function HomeScreen() {
 
-    const translateX = useSharedValue(1)
+    const { width } = useWindowDimensions()
+
+    const translateX = useSharedValue(0)
+    const rotate = useDerivedValue((x) => {
+        return interpolate(
+            translateX.value,
+            [0, width],
+            [0, 30]
+        ) + "deg"
+    })
 
     const gestureHandler = useAnimatedGestureHandler({
-        onStart: _ => {
+        onStart: (_, context) => {
             console.log("gesture started")
+            context.startX = translateX.value
         },
-        onActive: event => {
-            translateX.value = event.translationX
+        onActive: (event, context) => {
+            translateX.value = event.translationX + context.startX
         },
-        onEnd: _ => {
+        onEnd: (_, context) => {
             console.log("gesture finished")
         },
+        onCancel: (_) => {
+            translateX.value = withSpring(0)
+        }
     })
 
 
     const cardStyle = useAnimatedStyle(() => {
         return {
-            transform: [{ translateX: translateX.value }]
+            transform: [
+                {
+                    translateX: translateX.value
+                },
+                {
+                    rotate: rotate.value
+                }
+            ]
         }
     })
 
@@ -78,6 +100,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         paddingLeft: 150
     },
+    animatedCard: {
+        width: "95%",
+        height: "75%",
+    }
 })
 
 export default HomeScreen;
