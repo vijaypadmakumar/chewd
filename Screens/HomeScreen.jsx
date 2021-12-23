@@ -4,6 +4,8 @@ import Card from '../Components/Card';
 import store from '../store';
 import BottomBar from '../Components/BottomBar';
 import * as RootNavigation from "../RootNavigation"
+import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler } from "react-native-reanimated";
+import { PanGestureHandler } from "react-native-gesture-handler"
 
 // data
 import recommendations from '../assets/data/recommendations';
@@ -14,17 +16,40 @@ import TitleBar from '../Components/TitleBar';
 // they should not be allowed to go back to the login pages
 // -> try resetting the navigation stack
 
-// change the title bar to a seperate component
-
 function HomeScreen() {
+
+    const translateX = useSharedValue(1)
+
+    const gestureHandler = useAnimatedGestureHandler({
+        onStart: _ => {
+            console.log("gesture started")
+        },
+        onActive: event => {
+            translateX.value = event.translationX
+        },
+        onEnd: _ => {
+            console.log("gesture finished")
+        },
+    })
+
+
+    const cardStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ translateX: translateX.value }]
+        }
+    })
 
     console.log(store)
     return (
         <View style={styles.container}>
             <TitleBar />
-            <Card data={recommendations[0]} />
+            <PanGestureHandler onGestureEvent={gestureHandler}>
+                <Animated.View style={[styles.container, cardStyle]}>
+                    <Card data={recommendations[0]} />
+                </Animated.View >
+            </PanGestureHandler>
             <BottomBar />
-        </View>
+        </View >
     );
 }
 

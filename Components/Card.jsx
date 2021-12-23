@@ -1,54 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native"
-import { Icon } from 'react-native-elements'
-import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler } from "react-native-reanimated";
-import { PanGestureHandler } from "react-native-gesture-handler"
 
-const iconSize = 50
 
 function Card(props) {
     const { name, restaurantName, image } = props.data
 
-    const sharedValue = useSharedValue(1)
-    const x = useSharedValue(0)
-    const rotate = useSharedValue(0)
-
-    const gestureHandler = useAnimatedGestureHandler({
-        onStart: _ => {
-            console.log("gesture started")
-        },
-        onActive: event => {
-            console.log("gesture active :" + event.translationX)
-        },
-        onEnd: _ => {
-            console.log("gesture finished")
-        },
-    })
-
-
-    const cardStyle = useAnimatedStyle(() => {
-        return {
-            opacity: sharedValue.value,
-            transform: [{ translateX: x.value }, { rotateZ: rotate.value },]
-        }
-    })
-
-    /*
-    Need to move the animation code into HomeScreen
-    */
-
     return (
-        // <PanGestureHandler onGestureEvent={gestureHandler}>
-        <View style={styles.container}>
-            <Animated.View style={[styles.card, cardStyle]}>
-                <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: image }}>
-                    <View style={styles.cardDescription}>
-                        <Text style={styles.cardHeading}>{`${name} from ${restaurantName}`}</Text>
-                    </View>
-                </ImageBackground>
-            </Animated.View>
-        </View >
-        // </PanGestureHandler>
+
+        <View style={[styles.card, props.cardStyle]}>
+            <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: image }}>
+                <View style={styles.cardDescription}>
+                    <Text style={styles.cardHeading}>{`${name} from ${restaurantName}`}</Text>
+                </View>
+            </ImageBackground>
+        </View>
     );
 }
 
