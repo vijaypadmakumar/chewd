@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Dimensions, useWindowDimensions, Text } from "react-native"
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, useWindowDimensions } from "react-native"
 import Card from '../Components/Card';
 import store from '../store';
 import BottomBar from '../Components/BottomBar';
 import * as RootNavigation from "../RootNavigation"
 import Animated, {
-    useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler, useDerivedValue, interpolate, runOnJS
+    useAnimatedStyle, useSharedValue, withSpring, useAnimatedGestureHandler, useDerivedValue, interpolate, runOnJS
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler"
 
@@ -85,13 +85,15 @@ function HomeScreen() {
                 console.log("undecided")
                 translateX.value = withSpring(0)
             }
-
-
-
-
         }
     })
 
+    useEffect(() => {
+        // once the card is removed from the screen
+        // resetting translateX will bring the 
+        setNextIndex(currentIndex + 1)
+        translateX.value = 0
+    }, [currentIndex])
 
     const cardStyle = useAnimatedStyle(() => {
         return {
@@ -108,6 +110,11 @@ function HomeScreen() {
 
     const nextCardStyle = useAnimatedStyle(() => {
         return {
+            opacity: interpolate(
+                translateX.value,
+                [-hideTranslateX / 2, 0, hideTranslateX / 2],
+                [1, 0.7, 1]
+            ),
             transform: [
                 {
                     scale: interpolate(
@@ -115,7 +122,8 @@ function HomeScreen() {
                         [-hideTranslateX / 2, 0, hideTranslateX / 2],
                         [1, 0.85, 1],
                     )
-                }
+                },
+
             ]
         }
     })
