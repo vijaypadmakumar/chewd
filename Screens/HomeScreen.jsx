@@ -1,17 +1,22 @@
-import React from 'react';
-import { View, StyleSheet, Dimensions, useWindowDimensions } from "react-native"
+import React, { useState } from 'react';
+import { View, StyleSheet, Dimensions, useWindowDimensions, Text } from "react-native"
 import Card from '../Components/Card';
 import store from '../store';
 import BottomBar from '../Components/BottomBar';
 import * as RootNavigation from "../RootNavigation"
 import Animated, {
-    useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler, useDerivedValue, interpolate
+    useAnimatedStyle, useSharedValue, withSpring, withTiming, useAnimatedGestureHandler, useDerivedValue, interpolate, runOnJS
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler"
 
 // data
 import recommendations from '../assets/data/recommendations';
 import TitleBar from '../Components/TitleBar';
+
+function resetNavigationStack() {
+    console.info("NEED TO RESET STACK SO USER CANNOT GO BACK AFTER LOGIN/SIGNUP")
+}
+
 
 // TODO 
 // once the user is verified and is on the home screen
@@ -20,30 +25,70 @@ import TitleBar from '../Components/TitleBar';
 
 function HomeScreen() {
 
+    resetNavigationStack()
+
     const { width } = useWindowDimensions()
+    const ROTATION = 60
+    const hideTranslateX = width * 2
+    const swipeVelocity = 600
+
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [nextIndex, setNextIndex] = useState(currentIndex + 1)
+
+    const currentRecommendation = recommendations[currentIndex]
+    const nextRecommendation = recommendations[nextIndex]
+
 
     const translateX = useSharedValue(0)
-    const rotate = useDerivedValue((x) => {
+
+    // rotate is dependent on the translateX of gesture handler
+    // bigger translateX means more rotate and vice versa
+    const rotate = useDerivedValue(_ => {
         return interpolate(
             translateX.value,
-            [0, width],
-            [0, 30]
+            [0, hideTranslateX],
+            [0, ROTATION]
         ) + "deg"
     })
 
+    /*
+    This gesture handler handles the rotation and translation of the card on top.
+    */
     const gestureHandler = useAnimatedGestureHandler({
         onStart: (_, context) => {
-            console.log("gesture started")
             context.startX = translateX.value
         },
         onActive: (event, context) => {
             translateX.value = event.translationX + context.startX
         },
-        onEnd: (_, context) => {
-            console.log("gesture finished")
-        },
-        onCancel: (_) => {
-            translateX.value = withSpring(0)
+        onEnd: (event) => {
+            const degree = parseFloat(rotate.value.slice(0, 5))
+
+
+            if (degree >= 16 || event.velocityX >= swipeVelocity) {
+                // recommendation liked
+                console.log("like")
+                translateX.value = withSpring(hideTranslateX)
+
+                runOnJS(setCurrentIndex)(currentIndex + 1)
+
+
+            } else if (degree <= -16 || Math.abs(event.velocityX) >= swipeVelocity) {
+                // recommendation disliked
+                console.log("dislike")
+                translateX.value = withSpring(-hideTranslateX)
+
+                runOnJS(setCurrentIndex)(currentIndex + 1)
+
+            } else if (degree <= 16 && degree >= -16) {
+                // recommendation undecided
+                console.log("undecided")
+                translateX.value = withSpring(0)
+            }
+
+
+
+
         }
     })
 
@@ -61,13 +106,30 @@ function HomeScreen() {
         }
     })
 
+    const nextCardStyle = useAnimatedStyle(() => {
+        return {
+            transform: [
+                {
+                    scale: interpolate(
+                        translateX.value,
+                        [-hideTranslateX / 2, 0, hideTranslateX / 2],
+                        [1, 0.85, 1],
+                    )
+                }
+            ]
+        }
+    })
+
     console.log(store)
     return (
         <View style={styles.container}>
             <TitleBar />
+            <Animated.View style={[styles.nextCardContainer, nextCardStyle]}>
+                <Card data={nextRecommendation} />
+            </Animated.View>
             <PanGestureHandler onGestureEvent={gestureHandler}>
-                <Animated.View style={[styles.container, cardStyle]}>
-                    <Card data={recommendations[0]} />
+                <Animated.View style={[styles.currentCard, cardStyle]}>
+                    <Card data={currentRecommendation} />
                 </Animated.View >
             </PanGestureHandler>
             <BottomBar />
@@ -77,7 +139,6 @@ function HomeScreen() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "white",
         width: "100%",
         height: "100%",
         flex: 1,
@@ -96,13 +157,19 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
-    items: {
-        flexDirection: "row",
-        paddingLeft: 150
-    },
-    animatedCard: {
+    nextCardContainer: {
+        ...StyleSheet.absoluteFillObject,
+        alignItems: "center",
+        justifyContent: 'center',
+        position: "absolute",
         width: "95%",
         height: "75%",
+        top: 115
+    },
+    currentCard: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: 'center',
     }
 })
 

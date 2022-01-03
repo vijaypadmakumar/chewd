@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable } from "react-native"
-import { ButtonGroup } from 'react-native-elements/dist/buttons/ButtonGroup';
 import * as RootNavigation from "../../RootNavigation"
+import { Slider } from 'react-native-elements';
 
 function Options() {
 
+    const [currentValue, setCurrentValue] = useState(0)
+
     return (
         <View style={styles.container}>
-            <Text>Options Screen</Text>
+            <Text>Current Value : {currentValue.toFixed(0)}</Text>
+            <Slider
+                style={{ width: 200, height: 40 }}
+                minimumValue={2}
+                maximumValue={6}
+                value={currentValue}
+                thumbTintColor="dodgerblue"
+                minimumTrackTintColor="#000000"
+                maximumTrackTintColor="#000000"
+                onSlidingComplete={(value) => {
+                    setCurrentValue(value)
+                }}
+            />
             <Pressable style={styles.button} onPress={() => {
                 RootNavigation.navigate("Loading")
             }}>
