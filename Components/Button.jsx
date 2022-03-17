@@ -20,6 +20,10 @@ function getButtonStyle(buttonType) {
 
 function Button(props) {
     const buttonType = getButtonStyle(props.title)
+    const { action } = props
+    if (action === "") {
+        return null
+    }
     return (
         // change this -> make a sub component?
         <Pressable style={buttonType} onPress={() => {

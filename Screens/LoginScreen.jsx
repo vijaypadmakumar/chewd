@@ -29,7 +29,7 @@ function LoginScreen() {
             <Help helpTitle="Forgot details?" />
             <Button isDisabled={
                 (userName === "" || password === "") ? "none" : null
-            } title="Continue" action="Home" />
+            } title="Continue" action="LoadingData" />
         </View>
     );
 }

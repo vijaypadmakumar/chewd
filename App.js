@@ -17,19 +17,13 @@ import Option from './Screens/SignUpScreens/Option';
 import Loading from './Screens/Loading';
 import AccountScreen from './Screens/AccountScreen';
 import ChatScreen from './Screens/ChatScreen';
+import LoadingData from './Screens/LoadingData';
+import store from './store';
 
 const Stack = createNativeStackNavigator()
 
 
 export default function App() {
-
-  axios.get("https://api.kanye.rest").then((res) => {
-    console.log(res.data)
-  }).catch((err) => {
-    console.log(err)
-  }).finally(() => {
-    console.log("success")
-  })
 
   return (
     <NavigationContainer ref={navigationRef} styles={styles.container}>
@@ -42,6 +36,7 @@ export default function App() {
         <Stack.Screen name="SignUpPageTwo" component={Preferences} />
         <Stack.Screen name="SignUpPageThree" component={Options} />
         <Stack.Screen name="Loading" component={Loading} />
+        <Stack.Screen name="LoadingData" component={LoadingData} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Group screenOptions={{ presentation: "modal" }}>
           <Stack.Screen name="AccountScreen" component={AccountScreen} />

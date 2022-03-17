@@ -10,7 +10,7 @@ import Animated, {
 import { PanGestureHandler } from "react-native-gesture-handler"
 
 // data
-import recommendations from '../assets/data/recommendations';
+// import recommendations from '../assets/data/recommendations';
 import TitleBar from '../Components/TitleBar';
 
 function resetNavigationStack() {
@@ -25,7 +25,15 @@ function resetNavigationStack() {
 
 function HomeScreen() {
 
+    const [swipes, setSwipes] = useState(0)
+
+    const recommendations = store["recommendations"]
+
     resetNavigationStack()
+
+
+
+
 
     const { width } = useWindowDimensions()
     const ROTATION = 60
@@ -85,6 +93,8 @@ function HomeScreen() {
                 console.log("undecided")
                 translateX.value = withSpring(0)
             }
+
+            setSwipes(swipes + 1)
         }
     })
 
