@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Ionicons } from "react-native"
-import { Image } from 'react-native-elements';
+import { View, StyleSheet, Text } from "react-native"
 
 function ChatBox(props) {
     return (

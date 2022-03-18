@@ -10,7 +10,6 @@ import Button from '../../Components/Button';
 function Option(props) {
     return (
         <View style={styles.container}>
-            <Button title="Continue with Google" action="SignUpPageTwo" />
             <Button title="Continue with email" action="SignUpPageOne" />
         </View>
     );

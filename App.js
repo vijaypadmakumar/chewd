@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import axios from 'axios';
+
 // local libs
 import { navigationRef } from './RootNavigation';
 
@@ -24,6 +24,8 @@ const Stack = createNativeStackNavigator()
 
 
 export default function App() {
+
+  store["groups"] = []
 
   return (
     <NavigationContainer ref={navigationRef} styles={styles.container}>

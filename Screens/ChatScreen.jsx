@@ -4,10 +4,21 @@ import BottomBar from '../Components/BottomBar';
 import ChatBox from '../Components/ChatBox';
 import TitleBar from '../Components/TitleBar'
 import store from '../store';
+const axios = require("axios").default
+
+const get_user_details = async (user_id) => {
+    const request_url = `https://user-manager-chewd.herokuapp.com/get_user/${user_id}`
+
+    const data = await (await axios.get(request_url)).data
+
+
+    return data.name
+}
 
 function ChatScreen(props) {
 
     const { groups } = store
+
     // whenever a new group is created update this list
 
     return (
@@ -17,7 +28,11 @@ function ChatScreen(props) {
                 {groups.length !== 0 ? <ScrollView>
                     {
                         groups.map((group) => {
-                            return <ChatBox groupName="Group Name" />
+                            get_user_details(group[0])
+                                .then(res => {
+                                    console.log(res)
+                                })
+                            return <ChatBox groupName={group[0]} />
                         })
                     }
                 </ScrollView> : <Text style={styles.text}>Ooops no matches yet, np keep swiping.</Text>}

@@ -36,7 +36,7 @@ function BottomBar(props) {
                             RootNavigation.navigate("Home")
                         })
                 }} />
-                <Icon size={iconSize} name='flash-outline' type='ionicon' color='pink' onPress={() => {
+                <Icon size={iconSize} name='flash' type='ionicon' color='red' onPress={() => {
                     console.log("extra recommendations")
                     refresh_recommendations("extra")
                         .then(res => {
@@ -44,7 +44,7 @@ function BottomBar(props) {
                             RootNavigation.navigate("Home")
                         })
                 }} />
-                <Icon size={iconSize} name='chatbubble' type='ionicon' color='dodgerblue' onPress={() => {
+                <Icon size={iconSize} name='chatbubble' type='ionicon' color='' onPress={() => {
                     RootNavigation.navigate("ChatScreen")
                 }} />
                 <Icon size={iconSize + 8} name='person-circle' type='ionicon' color='darkgrey' onPress={() => {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         width: "95%",
         height: 80,
         backgroundColor: "white",
-        borderRadius: 50,
+        borderRadius: 20,
         position: "absolute",
         bottom: 50,
         shadowColor: 'grey',

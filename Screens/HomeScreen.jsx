@@ -35,11 +35,6 @@ const find_matches = async () => {
 
 function HomeScreen() {
 
-    find_matches()
-        .then(res => {
-            store["groups"] = res
-        })
-
     const [swipes, set_swipes] = useState(0)
     const [liked_restaurants, set_liked_restaurants] = useState([])
 
@@ -48,6 +43,11 @@ function HomeScreen() {
     if (swipes === 10) {
 
         console.log("reached 10 swipes")
+
+        find_matches()
+            .then(res => {
+                store["groups"] = res
+            })
 
         const { user_id } = store
 
