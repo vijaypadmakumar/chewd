@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Text } from "react-native"
+import { View, StyleSheet, Text, Ionicons } from "react-native"
 import { Image } from 'react-native-elements';
 
 function ChatBox(props) {
     return (
         <View style={styles.container}>
             <View style={styles.details}>
-                <Image style={styles.groupImage} source={{ uri: "https://pbs.twimg.com/profile_images/1296554590746353670/4hJASIDi_400x400.jpg" }}></Image>
+                {/* <Image style={styles.groupImage} source={{ uri: "https://pbs.twimg.com/profile_images/1296554590746353670/4hJASIDi_400x400.jpg" }}></Image> */}
                 <Text style={styles.groupName}>
                     {props.groupName}
                 </Text>
@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
     },
     groupName: {
         alignSelf: "center",
-        marginLeft: "26%"
-        // change this to a dynamic value
+        alignContent: "center"
     },
     details: {
         flexDirection: "row",

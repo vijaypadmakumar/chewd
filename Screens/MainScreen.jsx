@@ -9,7 +9,7 @@ function MainScreen() {
             <Image style={styles.image} source={require("../assets/images/logo.png")} />
             <Button title="Login" action="Login" />
             <Button title="Sign Up" action="Option" />
-            <Button title="Home - dev" action="Home" />
+
         </View>
     );
 }

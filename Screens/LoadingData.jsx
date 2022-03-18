@@ -6,20 +6,20 @@ import * as RootNavigation from "../RootNavigation"
 import HomeScreen from './HomeScreen';
 import objectHash from 'object-hash';
 
-/*
-    - verify if the user actually exists
-    - if they do get recommendations store it to user
-    - otherwise alert user and go to signup
-*/
-
 const get_data = async () => {
     const { username, password } = store
     const user_id = objectHash(username + password)
 
     const valid_account = await (await axios.get(`https://user-manager-chewd.herokuapp.com/get_user/${user_id}`)).data
 
+    const { name } = valid_account
+    store["name"] = name
+
     if (valid_account !== 400) {
         const recommendations = await (await axios.get(`https://recommendation-engine-chewd.herokuapp.com/${user_id}`)).data
+
+        // if no recommendations are found -> try extra recommendations api
+
         store["recommendations"] = recommendations
         store["user_id"] = user_id
 
@@ -36,7 +36,7 @@ const get_data = async () => {
                 },
                 {
                     text: "Signup",
-                    onPress: () => RootNavigation.navigate("Signup"),
+                    onPress: () => RootNavigation.navigate("SignUpPageOne"),
                     style: "destructive"
                 }
             ]

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { Icon } from 'react-native-elements'
 import Button from "../Components/Button";
-
+import store from '../store';
 // Refactor this
 
 function AccountScreen(props) {
@@ -16,7 +16,7 @@ function AccountScreen(props) {
                 <View style={styles.container}>
                     <Image style={styles.profilePicture} source={{ uri: profilePictureURL }} />
                     <View style={styles.subContainer}>
-                        <Text style={styles.text}>Vijay Padmakumar</Text>
+                        <Text style={styles.text}>{store["name"]}</Text>
                         <View style={{ marginLeft: 25, marginTop: 50 }}>
                             <Button title="Update details" />
                             <Button title="Update preferences" />

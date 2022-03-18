@@ -5,18 +5,28 @@ import store from '../store';
 import BottomBar from '../Components/BottomBar';
 import * as RootNavigation from "../RootNavigation"
 import Animated, {
-    useAnimatedStyle, useSharedValue, withSpring, useAnimatedGestureHandler, useDerivedValue, interpolate, runOnJS
+    useAnimatedStyle, useSharedValue, withSpring, useAnimatedGestureHandler, useDerivedValue, interpolate, runOnJS, cos
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler"
 
 // data
 // import recommendations from '../assets/data/recommendations';
 import TitleBar from '../Components/TitleBar';
+import axios from 'axios';
 
 function resetNavigationStack() {
     console.info("NEED TO RESET STACK SO USER CANNOT GO BACK AFTER LOGIN/SIGNUP")
 }
 
+const find_matches = async () => {
+    const { user_id } = store
+
+    const request_url = `https://user-matcher-chewd.herokuapp.com/${user_id}`
+
+    const matches = await (await axios.get(request_url)).data
+
+    return matches
+}
 
 // TODO 
 // once the user is verified and is on the home screen
@@ -25,15 +35,32 @@ function resetNavigationStack() {
 
 function HomeScreen() {
 
-    const [swipes, setSwipes] = useState(0)
+    find_matches()
+        .then(res => {
+            store["groups"] = res
+        })
+
+    const [swipes, set_swipes] = useState(0)
+    const [liked_restaurants, set_liked_restaurants] = useState([])
 
     const recommendations = store["recommendations"]
 
-    resetNavigationStack()
+    if (swipes === 10) {
 
+        console.log("reached 10 swipes")
 
+        const { user_id } = store
 
+        const request_url = `https://user-manager-chewd.herokuapp.com/push_liked_restaurants/${user_id}/${liked_restaurants}`
 
+        axios.get(request_url)
+            .then(res => {
+                console.log(res.data)
+            })
+
+        runOnJS(set_liked_restaurants)([])
+        runOnJS(set_swipes)(0)
+    }
 
     const { width } = useWindowDimensions()
     const ROTATION = 60
@@ -78,7 +105,12 @@ function HomeScreen() {
                 console.log("like")
                 translateX.value = withSpring(hideTranslateX)
 
+                const { restaurantName } = currentRecommendation
+
                 runOnJS(setCurrentIndex)(currentIndex + 1)
+
+
+                runOnJS(set_liked_restaurants)([...liked_restaurants, restaurantName])
 
 
             } else if (degree <= -16 || Math.abs(event.velocityX) >= swipeVelocity) {
@@ -94,7 +126,7 @@ function HomeScreen() {
                 translateX.value = withSpring(0)
             }
 
-            setSwipes(swipes + 1)
+            runOnJS(set_swipes)(swipes + 1)
         }
     })
 
@@ -138,7 +170,6 @@ function HomeScreen() {
         }
     })
 
-    console.log(store)
     return (
         <View style={styles.container}>
             <TitleBar />

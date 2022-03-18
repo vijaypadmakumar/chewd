@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, ImageBackground } from "react-native"
 
 
 function Card(props) {
-    const { name, restaurantName, image } = props.data
+    const { name, restaurantName, image_url } = props.data
 
     return (
 
         <View style={[styles.card, props.cardStyle]}>
-            <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={{ uri: image }}>
+            <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={require("../assets/images/loading.gif")}>
                 <View style={styles.cardDescription}>
-                    <Text style={styles.cardHeading}>{`${name} from ${restaurantName}`}</Text>
+                    <Text style={styles.cardHeading}>{`${name}\n${restaurantName}`}</Text>
                 </View>
             </ImageBackground>
         </View>
