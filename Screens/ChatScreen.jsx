@@ -11,7 +11,6 @@ const get_user_details = async (user_id) => {
 
     const data = await (await axios.get(request_url)).data
 
-
     return data.name
 }
 

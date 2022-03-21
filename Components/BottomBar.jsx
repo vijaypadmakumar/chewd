@@ -29,7 +29,7 @@ function BottomBar(props) {
     return (
         <View style={styles.bar}>
             <View style={styles.iconLayout}>
-                <Icon size={iconSize} name='albums' type='ionicon' color='grey' onPress={() => {
+                <Icon size={iconSize} name='albums' type='ionicon' color='' onPress={() => {
                     refresh_recommendations("")
                         .then(res => {
                             store["recommendations"] = res
@@ -44,10 +44,10 @@ function BottomBar(props) {
                             RootNavigation.navigate("Home")
                         })
                 }} />
-                <Icon size={iconSize} name='chatbubble' type='ionicon' color='' onPress={() => {
+                <Icon size={iconSize} name='chatbubble' type='ionicon' color='#95CD41' onPress={() => {
                     RootNavigation.navigate("ChatScreen")
                 }} />
-                <Icon size={iconSize + 8} name='person-circle' type='ionicon' color='darkgrey' onPress={() => {
+                <Icon size={iconSize + 8} name='person-circle' type='ionicon' color='#344CB7' onPress={() => {
                     RootNavigation.navigate("AccountScreen")
                 }} />
             </View>
@@ -78,3 +78,6 @@ const styles = StyleSheet.create({
 })
 
 export default BottomBar;
+
+
+<Icon size={iconSize} name='albums' type='ionicon' color=''/>

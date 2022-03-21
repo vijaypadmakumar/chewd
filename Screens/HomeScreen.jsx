@@ -3,7 +3,6 @@ import { View, StyleSheet, useWindowDimensions } from "react-native"
 import Card from '../Components/Card';
 import store from '../store';
 import BottomBar from '../Components/BottomBar';
-import * as RootNavigation from "../RootNavigation"
 import Animated, {
     useAnimatedStyle, useSharedValue, withSpring, useAnimatedGestureHandler, useDerivedValue, interpolate, runOnJS, cos
 } from "react-native-reanimated";

@@ -1,16 +1,24 @@
 import React from 'react';
-import { View, StyleSheet, Text } from "react-native"
+import { View, StyleSheet, Text, Pressable } from "react-native"
+import * as RootNavigation from "../RootNavigation"
+
+const open_chat_screen = (matched_user) => {
+    RootNavigation.navigate("ChattingScreen", { matched_user: matched_user })
+}
 
 function ChatBox(props) {
     return (
-        <View style={styles.container}>
-            <View style={styles.details}>
-                {/* <Image style={styles.groupImage} source={{ uri: "https://pbs.twimg.com/profile_images/1296554590746353670/4hJASIDi_400x400.jpg" }}></Image> */}
-                <Text style={styles.groupName}>
-                    {props.groupName}
-                </Text>
+        <Pressable onPress={_ => {
+            open_chat_screen(props.groupName)
+        }}>
+            <View style={styles.container}>
+                <View style={styles.details}>
+                    <Text style={styles.groupName}>
+                        {props.groupName}
+                    </Text>
+                </View>
             </View>
-        </View>
+        </Pressable>
     );
 }
 const styles = StyleSheet.create({

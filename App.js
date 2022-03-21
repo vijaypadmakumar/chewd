@@ -18,6 +18,7 @@ import Loading from './Screens/Loading';
 import AccountScreen from './Screens/AccountScreen';
 import ChatScreen from './Screens/ChatScreen';
 import LoadingData from './Screens/LoadingData';
+import ChattingScreen from './Screens/ChattingScreen';
 import store from './store';
 
 const Stack = createNativeStackNavigator()
@@ -40,6 +41,7 @@ export default function App() {
         <Stack.Screen name="Loading" component={Loading} />
         <Stack.Screen name="LoadingData" component={LoadingData} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        <Stack.Screen name="ChattingScreen" component={ChattingScreen} />
         <Stack.Group screenOptions={{ presentation: "modal" }}>
           <Stack.Screen name="AccountScreen" component={AccountScreen} />
         </Stack.Group>

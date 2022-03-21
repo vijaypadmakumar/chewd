@@ -10,7 +10,8 @@ function Card(props) {
         <View style={[styles.card, props.cardStyle]}>
             <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.image} source={require("../assets/images/loading.gif")}>
                 <View style={styles.cardDescription}>
-                    <Text style={styles.cardHeading}>{`${name}\n${restaurantName}`}</Text>
+                    <Text style={styles.foodItem}>{`${name}`}</Text>
+                    <Text style={styles.restaurantName}>{restaurantName}</Text>
                 </View>
             </ImageBackground>
         </View>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         borderRadius: 10,
     },
-    cardHeading: {
+    restaurantName: {
         textAlign: 'left',
         fontWeight: 'bold',
         color: "white",
@@ -53,7 +54,18 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 1,
         shadowRadius: 10,
-
+        opacity: 0.9
+    },
+    foodItem: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: "white",
+        fontSize: 35,
+        margin: 5,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 1,
+        shadowRadius: 10,
     }
 })
 
