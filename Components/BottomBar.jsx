@@ -45,7 +45,8 @@ function BottomBar(props) {
                         })
                 }} />
                 <Icon size={iconSize} name='chatbubble' type='ionicon' color='#95CD41' onPress={() => {
-                    RootNavigation.navigate("ChatScreen")
+                    const { groups } = store
+                    RootNavigation.navigate("ChatScreen", { groups: groups })
                 }} />
                 <Icon size={iconSize + 8} name='person-circle' type='ionicon' color='#344CB7' onPress={() => {
                     RootNavigation.navigate("AccountScreen")
@@ -80,4 +81,4 @@ const styles = StyleSheet.create({
 export default BottomBar;
 
 
-<Icon size={iconSize} name='albums' type='ionicon' color=''/>
+<Icon size={iconSize} name='albums' type='ionicon' color='' />

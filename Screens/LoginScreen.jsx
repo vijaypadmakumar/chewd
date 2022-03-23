@@ -10,7 +10,9 @@ function LoginScreen() {
     const [password, setPassword] = useState("")
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} onPress={_ => {
+            Keyboard.dismiss()
+        }}>
             <Text style={styles.text}>Welcome back!</Text>
             <View onPress={Keyboard.dismiss}>
                 <TouchableWithoutFeedback >

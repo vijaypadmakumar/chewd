@@ -16,7 +16,11 @@ const get_user_details = async (user_id) => {
 
 function ChatScreen(props) {
 
-    const { groups } = store
+    let { groups } = props.route.params
+
+    if (groups === undefined) {
+        groups = store["groups"]
+    }
 
     // whenever a new group is created update this list
 
@@ -27,14 +31,10 @@ function ChatScreen(props) {
                 {groups.length !== 0 ? <ScrollView>
                     {
                         groups.map((group) => {
-                            get_user_details(group[0])
-                                .then(res => {
-                                    console.log(res)
-                                })
                             return <ChatBox groupName={group[0]} />
                         })
                     }
-                </ScrollView> : <Text style={styles.text}>Ooops no matches yet, np keep swiping.</Text>}
+                </ScrollView> : <Text style={styles.text}>You don't have any matches yet. Don't worry, keep swiping to get some matches.</Text>}
             </View>
             <BottomBar />
         </View>
@@ -44,7 +44,7 @@ function ChatScreen(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center"
+        alignItems: "center",
     },
     chatGroups: {
         width: "95%",
@@ -61,7 +61,9 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     text: {
-
+        alignSelf: "center",
+        fontSize: 20,
+        fontWeight: "bold"
     }
 })
 

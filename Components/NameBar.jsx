@@ -8,10 +8,10 @@ function NameBar(props) {
     return (
         <View style={styles.titleBar}>
             <Icon style={styles.backButton} size={30} name='arrow-back-outline' type='ionicon' color='' onPress={_ => {
-                RootNavigation.navigate("ChatScreen")
+                RootNavigation.navigate("ChatScreen", { matched_user: matched_user })
             }} />
             <Text style={styles.userName}>{matched_user}</Text>
-            <Icon style={styles.backButton} size={0} name='' type='ionicon' color='' />
+            <Icon style={styles.backButton} size={30} name='information-circle-outline' type='ionicon' color='' />
         </View>
     );
 }
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         flexDirection: "row",
         justifyContent: 'space-around',
-        alignItems: "center"
+        alignItems: "center",
+        alignContent: "center"
     },
     userName: {
         marginTop: 50,

@@ -12,8 +12,9 @@ const get_data = async () => {
 
     const valid_account = await (await axios.get(`https://user-manager-chewd.herokuapp.com/get_user/${user_id}`)).data
 
-    const { name } = valid_account
+    const { name, matches } = valid_account
     store["name"] = name
+    store["matches"] = matches
 
     if (valid_account !== 400) {
         const recommendations = await (await axios.get(`https://recommendation-engine-chewd.herokuapp.com/${user_id}`)).data
@@ -27,7 +28,7 @@ const get_data = async () => {
     } else {
         Alert.alert(
             "Account does not exist",
-            "We couldn't find an account associated with that details, try again or signup",
+            "We couldn't find an account associated with that details",
             [
                 {
                     text: "Try again",

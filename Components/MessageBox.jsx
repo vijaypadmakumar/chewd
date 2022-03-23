@@ -34,14 +34,14 @@ function MessageBox(props) {
 
 const styles = StyleSheet.create({
     currentUser: {
-        backgroundColor: "white",
+        backgroundColor: "lightgrey",
         padding: 20,
         alignSelf: "flex-end",
         borderRadius: 20,
         margin: 10
     },
     otherUser: {
-        backgroundColor: "grey",
+        backgroundColor: "darkgrey",
         padding: 20,
         alignSelf: "flex-start",
         borderRadius: 20,

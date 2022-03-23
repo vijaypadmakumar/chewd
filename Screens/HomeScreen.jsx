@@ -13,9 +13,6 @@ import { PanGestureHandler } from "react-native-gesture-handler"
 import TitleBar from '../Components/TitleBar';
 import axios from 'axios';
 
-function resetNavigationStack() {
-    console.info("NEED TO RESET STACK SO USER CANNOT GO BACK AFTER LOGIN/SIGNUP")
-}
 
 const find_matches = async () => {
     const { user_id } = store
@@ -27,10 +24,17 @@ const find_matches = async () => {
     return matches
 }
 
-// TODO 
-// once the user is verified and is on the home screen
-// they should not be allowed to go back to the login pages
-// -> try resetting the navigation stack
+const push_matched_users = async (matches) => {
+    const { user_id } = store
+
+    const request_url = `https://user-manager-chewd.herokuapp.com/add_matched/${user_id}/${matches}`
+
+    const result = await (await axios.get(request_url)).data
+
+    console.log(result)
+
+    return result
+}
 
 function HomeScreen() {
 
@@ -46,6 +50,11 @@ function HomeScreen() {
         find_matches()
             .then(res => {
                 store["groups"] = res
+            })
+
+        push_matched_users(store["groups"])
+            .then(res => {
+                console.log(res)
             })
 
         const { user_id } = store
@@ -111,6 +120,8 @@ function HomeScreen() {
 
                 runOnJS(set_liked_restaurants)([...liked_restaurants, restaurantName])
 
+                runOnJS(set_swipes)(swipes + 1)
+
 
             } else if (degree <= -16 || Math.abs(event.velocityX) >= swipeVelocity) {
                 // recommendation disliked
@@ -119,13 +130,15 @@ function HomeScreen() {
 
                 runOnJS(setCurrentIndex)(currentIndex + 1)
 
+                runOnJS(set_swipes)(swipes + 1)
+
             } else if (degree <= 16 && degree >= -16) {
                 // recommendation undecided
                 console.log("undecided")
                 translateX.value = withSpring(0)
             }
 
-            runOnJS(set_swipes)(swipes + 1)
+
         }
     })
 
